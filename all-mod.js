@@ -1,12 +1,17 @@
-const date = new Date();
-const fs = require('fs');
+
 import {createTimeOfInterest} from 'astronomy-bundle/time';
 import {createEarth} from 'astronomy-bundle/earth';
 import {createMercury, createVenus, createMars, createJupiter, createSaturn, createNeptune} from 'astronomy-bundle/planets';
 
 //=======================================================
 
-module.exports = async function planets_now(blaa){
+module.exports = async function planets_now(){
+    const fs = require('fs');
+    var dateJSON = require('./date.json');
+    console.log('dateJSON:', dateJSON);
+    const date = new Date(dateJSON.date);
+    console.log('this is the date picked from date.json', date);
+
 
     const toi = createTimeOfInterest.fromDate(date);
     let mercury = createMercury(toi);
