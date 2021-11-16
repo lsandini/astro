@@ -18,6 +18,7 @@
   "homepage": "https://github.com/lsandini/astro#readme",
   "dependencies": {
     "astronomy-bundle": "^6.7.2",
+    "cors": "^2.8.5",
     "esm": "^3.2.25",
     "express": "^4.17.1"
   }
