@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,
+					initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"
+        integrity="sha512-VZ6m0F78+yo3sbu48gElK4irv2dzPoep8oo9LEjxviigcnnnNvnTOJRSrIhuFk68FMLOpiNz+T77nNY89rnWDg=="
+        crossorigin="anonymous"></script>
+
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h3 style="color: green; font-size: 25px;">
+        Astronomy Bundle coordinates
+    </h3>
+    <form>
+        <input name="date" /><br />
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+    <script type="text/javascript">
+        window.addEventListener("load", () => {
+            const form = document.querySelector("form");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let data = new FormData(form);
+                console.log(data);
+                axios({
+                        method: "post",
+                        url: "/",
+                        data: data,
+                    })
+                    .then((res) => {
+                        var jug = res.data;
+                        console.log('res data', res.data);
+                        document.getElementById("textArea").innerHTML = jug.date;
+                    })
+                    .catch((err) => {
+                        throw err;
+                    });
+            });
+        });
+    </script>
+
+    <h1>Where are Earth and Mars ?</h1>
+    <h2>Here are their longitudes, in heliocentric coordinates</h2>
+    <p> longitude: <span id="textArea"></span></p>
+
+</body>
+
+</html>
