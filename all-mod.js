@@ -3,8 +3,7 @@ import {createTimeOfInterest} from 'astronomy-bundle/time';
 import {createEarth} from 'astronomy-bundle/earth';
 import {createMercury, createVenus, createMars, createJupiter, createSaturn, createNeptune} from 'astronomy-bundle/planets';
 const fs = require("fs");
-// var myDate = require('./app-axios')
-// console.log('myDate logged in all-mod.js', myDate);
+
 //=======================================================
 
 module.exports = async function planets_now(){
