@@ -2,9 +2,10 @@
   "name": "astro",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app-axios.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app-axios.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "astronomy-bundle": "^6.7.2",
     "cors": "^2.8.5",
     "esm": "^3.2.25",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0"
   }
 }
