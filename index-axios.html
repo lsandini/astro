@@ -35,7 +35,7 @@
                     })
                     .then((res) => {
                         console.log('res data', res.data);
-                        document.getElementById("textArea").innerHTML = res.data.date;
+                        document.getElementById("textArea").innerHTML = res.data;
                     })
                     .catch((err) => {
                         throw err;
