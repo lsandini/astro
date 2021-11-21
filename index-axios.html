@@ -17,10 +17,9 @@
         Astronomy Bundle coordinates
     </h3>
     <form>
-        <input type="date" name="date" /><br />
+        <input type="datetime-local" name="date" /><br />
         <button type="submit">Submit</button>
     </form>
-
 
     <script type="text/javascript">
         window.addEventListener("load", () => {
@@ -36,7 +35,7 @@
                     })
                     .then((res) => {
                         console.log('res data', res.data);
-                        document.getElementById("textArea").innerHTML = res.data;
+                        document.getElementById("textArea1").innerHTML = res.data.toFixed(3);
                     })
                     .catch((err) => {
                         throw err;
@@ -47,7 +46,12 @@
 
     <h1>Where are Earth and Mars ?</h1>
     <h2>Here are their longitudes, in heliocentric coordinates</h2>
-    <p> longitude: <span id="textArea"></span></p>
+    <p> longitude: <span id="textArea1"></span>&deg;</p>
+    <p> latitude: <span id="textArea"></span>&deg;</p>
+    <p> distance: <span id="textArea"></span>&deg;</p>
+
+    <h2>Prefer a link to the data in JSON format ? </h2>
+    <a href = "http://localhost:3000/JSON/"> get it here !</href></a>
 
 </body>
 

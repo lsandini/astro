@@ -1,11 +1,12 @@
 const express = require('express');
 const formidable = require('express-formidable');
-
-var planets_now = require('./all-mod.js');
-const myDate = new Date();
-module.exports = myDate;
-
 const app = express();
+const fs = require('fs');
+const data = {};
+
+import {createTimeOfInterest} from 'astronomy-bundle/time';
+import {createEarth} from 'astronomy-bundle/earth';
+import {createMercury, createVenus, createMars, createJupiter, createSaturn, createNeptune} from 'astronomy-bundle/planets';
 
 app.use(express.static(__dirname+'/index-axios.html'));
 app.use(formidable());
@@ -14,19 +15,62 @@ app.get('/', (req, res)=>{
 	res.sendFile(__dirname+'/index-axios.html');
 });
 
+app.get('/JSON', (req, res)=>{
+	res.sendFile(__dirname+'/index-axios.html');
+});
+
 app.post('/', (req, res)=>{
+
 	const myDate = new Date(req.fields.date);
-	console.log(JSON.stringify(req.fields));
-	console.log('myDate as captures from req.field.date', myDate);
-	planets_now();
-	var dataJSON = require('./data.json');
-    console.log('dataJSON earth longitude:', dataJSON.earth.lon);
-	var ealon = dataJSON.earth.lon;
+	async function planets_now(){
+
+		const toi = createTimeOfInterest.fromDate(myDate);
+		let mercury = createMercury(toi);
+		let venus = createVenus(toi);
+		let earth = createEarth(toi);
+		let mars = createMars(toi);
+		let jupiter = createJupiter(toi);
+		let saturn = createSaturn(toi);
+		let neptune= createNeptune(toi);
+	
+		let positionme = await mercury.getHeliocentricEclipticSphericalJ2000Coordinates();
+		let positionve = await venus.getHeliocentricEclipticSphericalJ2000Coordinates();
+		let positionea = await earth.getHeliocentricEclipticSphericalJ2000Coordinates();
+		let positionma = await mars.getHeliocentricEclipticSphericalJ2000Coordinates();
+		let positionju = await jupiter.getHeliocentricEclipticSphericalJ2000Coordinates();
+		let positionsa = await saturn.getHeliocentricEclipticSphericalJ2000Coordinates();
+		let positionne = await neptune.getHeliocentricEclipticSphericalJ2000Coordinates();
+	
+		const dme = await mercury.getDistanceToEarth();
+		const dve = await venus.getDistanceToEarth();
+		const dma = await mars.getDistanceToEarth();
+		const dju = await jupiter.getDistanceToEarth();
+		const dsa = await saturn.getDistanceToEarth();
+		const dne = await neptune.getDistanceToEarth();
+	
+		const data = {'mercury':positionme,
+			'venus':positionve,
+			'earth':positionea,
+			'mars':positionma,
+			'jupiter':positionju,
+			'saturn':positionsa,
+			'neptune':positionne
+		};
+	
+	const dataJSON = JSON.stringify(data, null, 4);
+	fs.writeFile('./data.json', dataJSON, (err) => {
+		if (err) {
+			throw err;
+		}
+		console.log("JSON data is saved.");
+	});
+	var ealon = data.earth.lon;
 	res.send(JSON.stringify(ealon));
+	}
+	planets_now();
 });
 
 app.listen('3000', ()=>{
 	console.log('listening to port 3000');
-
-});
+	});
 
