@@ -56,7 +56,8 @@ app.post('/', (req, res)=>{
 		console.log("JSON data is saved.");
 	});
 	var ealon = data.earth.lon;
-	res.send(JSON.stringify(ealon));
+	console.log('data.earth:', data);
+	res.send(JSON.stringify(data));
 	}
 	planets_now();
 });

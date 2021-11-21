@@ -34,8 +34,11 @@
                         data: data,
                     })
                     .then((res) => {
-                        console.log('res data', res.data);
-                        document.getElementById("textArea1").innerHTML = res.data.toFixed(3);
+                        //console.log('res data', res.data);
+                        //console.log('res.data.earth.lon', res.data.earth.lon);
+                        document.getElementById("textArea1").innerHTML = res.data.earth.lon;
+                        document.getElementById("textArea2").innerHTML = res.data.earth.lat;
+                        document.getElementById("textArea3").innerHTML = res.data.earth.radiusVector;
                     })
                     .catch((err) => {
                         throw err;
@@ -47,8 +50,8 @@
     <h1>Where are Earth and Mars ?</h1>
     <h2>Here are their longitudes, in heliocentric coordinates</h2>
     <p> longitude: <span id="textArea1"></span>&deg;</p>
-    <p> latitude: <span id="textArea"></span>&deg;</p>
-    <p> distance: <span id="textArea"></span>&deg;</p>
+    <p> latitude: <span id="textArea2"></span>&deg;</p>
+    <p> distance: <span id="textArea3"></span></p>
 
     <h2>Prefer a link to the data in JSON format ? </h2>
     <a href = "http://localhost:3000/JSON/"> get it here !</href></a>
