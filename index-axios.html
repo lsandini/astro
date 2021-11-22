@@ -33,10 +33,11 @@
 
 <body>
     <h3 style="color: green; font-size: 25px;">
-        Astronomy Bundle coordinates
+        API based on the Astronomy Bundle Package
     </h3>
+    <p>Enter the Time Of Interest, for which you want to compute corrdinates.</p>
     <form>
-        <input type="text" name="date" id="datepicker">
+        <input type="text" name="date" id="datepicker" required>
         <button type="submit">Submit</button>
     </form>
 
@@ -57,8 +58,10 @@
                         //console.log('res.data.earth.lon', res.data.earth.lon);
                         document.getElementById("textArea1").innerHTML = res.data.earth.lon;
                         document.getElementById("textArea2").innerHTML = res.data.earth.lat;
-                        document.getElementById("textArea3").innerHTML = res.data.earth
-                            .radiusVector;
+                        document.getElementById("textArea3").innerHTML = res.data.earth.radiusVector;
+                        document.getElementById("textArea4").innerHTML = res.data.mars.lon;
+                        document.getElementById("textArea5").innerHTML = res.data.mars.lat;
+                        document.getElementById("textArea6").innerHTML = res.data.mars.radiusVector;
                     })
                     .catch((err) => {
                         throw err;
@@ -75,11 +78,15 @@
         }
     </script>
 
-    <h1>Where are Earth and Mars ?</h1>
-    <h2>Here are their longitudes, in heliocentric coordinates</h2>
+    <h2>Heliocentric coordinates of Earth</h2>
     <p> longitude: <span id="textArea1"></span>&deg;</p>
     <p> latitude: <span id="textArea2"></span>&deg;</p>
     <p> distance: <span id="textArea3"></span></p>
+
+    <h2>Heliocentric coordinates of Mars</h2>
+    <p> longitude: <span id="textArea4"></span>&deg;</p>
+    <p> latitude: <span id="textArea5"></span>&deg;</p>
+    <p> distance: <span id="textArea6"></span></p>
 
     <h2>Prefer a link to the data in JSON format ? </h2>
     <a href="/JSON/"> get it here !</href></a>
