@@ -60,8 +60,8 @@ app.post('/', (req, res)=>{
 	res.send(JSON.stringify(data));
 	}
 	planets_now();
+	console.log('myDate:',myDate);
 });
 
 app.listen(process.env.PORT || 3000, 
 	() => console.log('Server is running at http://localhost:${process.env.PORT}'));
-
