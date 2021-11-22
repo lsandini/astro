@@ -9,6 +9,25 @@
         integrity="sha512-VZ6m0F78+yo3sbu48gElK4irv2dzPoep8oo9LEjxviigcnnnNvnTOJRSrIhuFk68FMLOpiNz+T77nNY89rnWDg=="
         crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $('#datepicker').datepicker({
+                dateFormat: 'D M dd yy',
+
+                onSelect: function (datetext) {
+                    var d = new Date(); // for now
+                    datetext = datetext + " " + d.getHours() + ": " + d.getMinutes() + ": " + d
+                        .getSeconds();
+                    $('#datepicker').val(datetext);
+                },
+            });
+        });
+    </script>
+
     <title>Document</title>
 </head>
 
@@ -17,7 +36,7 @@
         Astronomy Bundle coordinates
     </h3>
     <form>
-        <input type="datetime-local" name="date" /><br />
+        <input type="text" name="date" id="datepicker">
         <button type="submit">Submit</button>
     </form>
 
@@ -38,13 +57,22 @@
                         //console.log('res.data.earth.lon', res.data.earth.lon);
                         document.getElementById("textArea1").innerHTML = res.data.earth.lon;
                         document.getElementById("textArea2").innerHTML = res.data.earth.lat;
-                        document.getElementById("textArea3").innerHTML = res.data.earth.radiusVector;
+                        document.getElementById("textArea3").innerHTML = res.data.earth
+                            .radiusVector;
                     })
                     .catch((err) => {
                         throw err;
                     });
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        _today: function () {
+            var myDate = document.querySelector(myDate);
+            var today = new Date();
+            myDate.value = today.toISOString().substr(0, 15);
+        }
     </script>
 
     <h1>Where are Earth and Mars ?</h1>
@@ -54,7 +82,7 @@
     <p> distance: <span id="textArea3"></span></p>
 
     <h2>Prefer a link to the data in JSON format ? </h2>
-    <a href = "http://localhost:3000/JSON/"> get it here !</href></a>
+    <a href="http://localhost:3000/JSON/"> get it here !</href></a>
 
 </body>
 
