@@ -1,7 +1,10 @@
 var FormData = require('form-data');
-const fetch = require('node-fetch');
+var fetch = require('node-fetch');
 var formdata = new FormData();
-formdata.append("date", "2021-11-26T11:34:51.000Z");
+var myDate = new Date();
+var dateString = myDate.toISOString();
+console.log("date", myDate, 'dateString', dateString);
+formdata.append("date", dateString);
 
 var requestOptions = {
   method: 'POST',
