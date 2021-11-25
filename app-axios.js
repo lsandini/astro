@@ -71,16 +71,18 @@ app.post("/", (req, res) => {
     res.send(JSON.stringify(data));
   }
 
-  planets_now();
-//   try {
-//     await planets_now();
-//     console.log("excellent, that worked!");
-//   } catch (e) {
-//     console.log("that failed", e);
-//   } finally {
-//     console.log("it worked or failed but this line is logged anyways!");
-//   }
-//   myFunc();
+  //planets_now();
+  async function myFunc() {
+    try {
+        await planets_now();
+        console.log('yeah !')
+    } catch (e) {
+        console.log("that failed", e); 
+    } finally {
+        console.log('excellent, that worked or maybe not!')
+    }
+};
+myFunc();
   console.log("myDate:", myDate);
 });
 
