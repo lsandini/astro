@@ -2,6 +2,7 @@ const express = require('express');
 const formidable = require('express-formidable');
 const app = express();
 const fs = require('fs');
+const { writeFile } = require('fs/promises')
 
 import {createTimeOfInterest} from 'astronomy-bundle/time';
 import {createEarth} from 'astronomy-bundle/earth';
@@ -46,15 +47,17 @@ app.post('/', (req, res)=>{
 			'mars':positionma,
 			'jupiter':positionju,
 			'saturn':positionsa,
-			'neptune':positionne };
+			'neptune':positionne,
+			'time': myDate };
 	
 	const dataJSON = JSON.stringify(data, null, 4);
-	fs.writeFile('./data.json', dataJSON, (err) => {
-		if (err) {
-			throw err;
-		}
-		console.log("JSON data is saved.");
-	});
+	await writeFile('./data.json', dataJSON)
+	// fs.writeFile('./data.json', dataJSON, (err) => {
+	// 	if (err) {
+	// 		throw err;
+	// 	}
+	// 	console.log("JSON data is saved.");
+	// });
 
 	console.log('data.earth:', data);
 	res.send(JSON.stringify(data));
