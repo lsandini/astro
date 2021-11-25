@@ -70,16 +70,17 @@ app.post("/", (req, res) => {
     console.log("data.earth:", data);
     res.send(JSON.stringify(data));
   }
-  //planets_now();
-  try {
-    await planets_now();
-    console.log("excellent, that worked!");
-  } catch (e) {
-    console.log("that failed", e);
-  } finally {
-    console.log("it worked or failed but this line is logged anyways!");
-  }
-  myFunc();
+
+  planets_now();
+//   try {
+//     await planets_now();
+//     console.log("excellent, that worked!");
+//   } catch (e) {
+//     console.log("that failed", e);
+//   } finally {
+//     console.log("it worked or failed but this line is logged anyways!");
+//   }
+//   myFunc();
   console.log("myDate:", myDate);
 });
 
