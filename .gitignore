@@ -8,3 +8,4 @@ logs
 .env.production
 
 deploy.sh
+data-local.json
