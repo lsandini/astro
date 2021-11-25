@@ -13,6 +13,6 @@ var requestOptions = {
 };
 
 fetch("https://astro6.herokuapp.com/", requestOptions)
-  .then(response => response.text())
+  .then(response => response.json())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
