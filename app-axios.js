@@ -55,11 +55,21 @@ app.post('/', (req, res)=>{
 		}
 		console.log("JSON data is saved.");
 	});
-	var ealon = data.earth.lon;
+
 	console.log('data.earth:', data);
 	res.send(JSON.stringify(data));
 	}
-	planets_now();
+	//planets_now();
+	async function myFunc() {
+		try {
+			await planets_now();
+		} catch (e) {
+			console.log("that failed", e); 
+		} finally {
+			console.log('excellent, that worked!')
+		}
+	};
+	myFunc();
 	console.log('myDate:',myDate);
 });
 
