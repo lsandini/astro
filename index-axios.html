@@ -62,12 +62,38 @@
                         document.getElementById("textArea4").innerHTML = res.data.mars.lon;
                         document.getElementById("textArea5").innerHTML = res.data.mars.lat;
                         document.getElementById("textArea6").innerHTML = res.data.mars.radiusVector;
+
+
+                    var keys = [];
+
+                    document.write("<table border==\"1\"><tr>");
+                    for (key in res.data[0]) {
+                        document.write('<td>' + key + '</td>');
+                    }
+                    document.write("</tr>");
+                    for (var i = 0; i < res.data.length; i++) {
+                        document.write('<tr>');
+                        for (key in data[i]) {
+                        document.write('<td>' + res.data[i][key] + '</td>');
+                    }
+                        document.write('</tr>');
+                    }
+                    document.write("</table>");
+
+
+
+
                     })
                     .catch((err) => {
                         throw err;
                     });
+
+
             });
+
         });
+
+
     </script>
 
 
@@ -89,28 +115,6 @@
 <p>
     <h6><a href="https://github.com/andrmoel/astronomy-bundle-js"> Astronomy Bundle on Github</href></a></h6>
 </p>
-
-<script type="text/javascript">
-var data = [];
-fetch('./JSON/').then(response => data = response.json());
-console.log('show me data on the console:', data[0]); // output 'testing'
-
-var keys = [];
-
-document.write("<table border==\"1\"><tr>");
-for (key in data[0]) {
-	document.write('<td>' + key + '</td>');
-}
-document.write("</tr>");
-for (var i = 0; i < data.length; i++) {
-	document.write('<tr>');
-	for (key in data[i]) {
-  	document.write('<td>' + data[i][key] + '</td>');
-  }
-	document.write('</tr>');
-}
-document.write("</table>");
-</script>
 
 </body>
 
