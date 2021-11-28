@@ -107,7 +107,7 @@ app.post("/", (req, res) => {
       mercury_mass: 0.330,
       venus_mass: 4.87,
       earth_mass: 5.97,
-      mars_mass: 6.42,
+      mars_mass: 0.64,
       jupiter_mass: 1898,
       saturn_mass: 568,
       uranus_mass: 86.8,
