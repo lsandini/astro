@@ -62,6 +62,19 @@
                         document.getElementById("textArea4").innerHTML = res.data.mars.lon;
                         document.getElementById("textArea5").innerHTML = res.data.mars.lat;
                         document.getElementById("textArea6").innerHTML = res.data.mars.radiusVector;
+
+                        document.getElementById("textArea1g").innerHTML = res.data.venusg.lon;
+                        document.getElementById("textArea2g").innerHTML = res.data.venusg.lat;
+                        document.getElementById("textArea3g").innerHTML = res.data.venusg.radiusVector;
+                        document.getElementById("textArea4g").innerHTML = res.data.marsg.lon;
+                        document.getElementById("textArea5g").innerHTML = res.data.marsg.lat;
+                        document.getElementById("textArea6g").innerHTML = res.data.marsg.radiusVector;
+                        document.getElementById("textArea6d").innerHTML = res.data.marsd;
+
+                        document.getElementById("textArea4m").innerHTML = res.data.moong.lon;
+                        document.getElementById("textArea5m").innerHTML = res.data.moong.lat;
+                        document.getElementById("textArea6m").innerHTML = res.data.moong.radiusVector;
+                        document.getElementById("textArea6md").innerHTML = res.data.moon_d;
                     })
                     .catch((err) => {
                         throw err;
@@ -78,12 +91,31 @@
     <h2>Heliocentric coordinates of Earth</h2>
     <p> longitude: <span id="textArea1"></span>&deg;</p>
     <p> latitude: <span id="textArea2"></span>&deg;</p>
-    <p> distance: <span id="textArea3"></span></p>
+    <p> distance (astronomical units): <span id="textArea3"></span></p>
 
     <h2>Heliocentric coordinates of Mars</h2>
     <p> longitude: <span id="textArea4"></span>&deg;</p>
     <p> latitude: <span id="textArea5"></span>&deg;</p>
-    <p> distance: <span id="textArea6"></span></p>
+    <p> distance (astronomical units): <span id="textArea6"></span></p>
+
+
+    <h2>Geocentric coordinates of Venus</h2>
+    <p> longitude: <span id="textArea1g"></span>&deg;</p>
+    <p> latitude: <span id="textArea2g"></span>&deg;</p>
+    <p> distance (astronomical units): <span id="textArea3g"></span></p>
+
+    <h2>Geocentric coordinates of Mars</h2>
+    <p> longitude: <span id="textArea4g"></span>&deg;</p>
+    <p> latitude: <span id="textArea5g"></span>&deg;</p>
+    <p> distance (astronomical units): <span id="textArea6g"></span></p>
+    <p> distance in km: <span id="textArea6d"></span></p>
+
+    <h2>Geocentric coordinates of the Moon</h2>
+    <p> longitude: <span id="textArea4m"></span>&deg;</p>
+    <p> latitude: <span id="textArea5m"></span>&deg;</p>
+    <p> distance (astronomical units): <span id="textArea6m"></span></p>
+    <p> distance in km: <span id="textArea6md"></span></p>
+
 
     <h2>Prefer a link to the data in JSON format ? </h2>
     <a href="/JSON/"> get it here !</href></a>
