@@ -103,6 +103,16 @@ app.post("/", (req, res) => {
       saturnd: saturn_d,
       neptuned: neptune_d,
       moon_d,
+
+      mercury_mass: 0.330,
+      venus_mass: 4.87,
+      earth_mass: 5.97,
+      mars_mass: 6.42,
+      jupiter_mass: 1898,
+      saturn_mass: 568,
+      uranus_mass: 86.8,
+      neptume_mass: 102,
+      moon_mass: 0.073,
       time: myDate,
     };
 
