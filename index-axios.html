@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+
     <script>
         $(function () {
             $('#datepicker').datepicker({
@@ -87,6 +89,28 @@
 <p>
     <h6><a href="https://github.com/andrmoel/astronomy-bundle-js"> Astronomy Bundle on Github</href></a></h6>
 </p>
+
+<script type="text/javascript">
+var data = [];
+fetch('./JSON/').then(response => data = response.json());
+console.log('show me data on the console:', data[0]); // output 'testing'
+
+var keys = [];
+
+document.write("<table border==\"1\"><tr>");
+for (key in data[0]) {
+	document.write('<td>' + key + '</td>');
+}
+document.write("</tr>");
+for (var i = 0; i < data.length; i++) {
+	document.write('<tr>');
+	for (key in data[i]) {
+  	document.write('<td>' + data[i][key] + '</td>');
+  }
+	document.write('</tr>');
+}
+document.write("</table>");
+</script>
 
 </body>
 
