@@ -47,3 +47,42 @@ let globalVectorForce = Math.sqrt(x^2 + y^2);
 
 console.log('global vector force:', globalVectorForce, 'Newtons');
 console.log('global vector longitude:', globalVectorLong, 'degrees');
+
+
+//Attraction force between planet and patient (80kg) is G * (mass1 * mass2)/dist^2 
+
+let forceMercuryEarth_p = G * (( 80 * myData.mercury_mass*10e24 ) / Math.pow((myData.mercuryd*1000), 2) );
+let forceVenusEarth_p = G * (( 80 * myData.venus_mass*10e24 ) / Math.pow((myData.venusd*1000), 2) );
+let forceMarsEarth_p = G * (( 80 * myData.mars_mass*10e24 ) / Math.pow((myData.marsd*1000), 2) );
+let forceJupiterEarth_p = G * (( 80 * myData.jupiter_mass*10e24 ) / Math.pow((myData.jupiterd*1000), 2) );
+let forceSaturnEarth_p = G * (( 80 * myData.saturn_mass*10e24 ) / Math.pow((myData.saturnd*1000), 2) );
+let forceNeptuneEarth_p = G * (( 80 * myData.neptune_mass*10e24 ) / Math.pow((myData.neptuned*1000), 2) );
+
+console.log('Attraction force between Mercury and patient:', forceMercuryEarth_p.toExponential(),'Newtons');
+console.log('Attraction force between Venus and patient:', forceVenusEarth_p.toExponential(),'Newtons');
+console.log('Attraction force between Mars and patient:', forceMarsEarth_p.toExponential(),'Newtons');
+console.log('Attraction force between Jupiter and patient:', forceJupiterEarth_p.toExponential(),'Newtons');
+console.log('Attraction force between Saturn and patient:', forceSaturnEarth_p.toExponential(),'Newtons');
+console.log('Attraction force between Neptune and patient:', forceNeptuneEarth_p.toExponential(),'Newtons');
+
+let x_p = (forceMercuryEarth_p * Math.cos(myData.mercuryg.lon)) + 
+(forceVenusEarth_p * Math.cos(myData.venusg.lon)) +
+(forceMarsEarth_p * Math.cos(myData.marsg.lon)) +
+(forceJupiterEarth_p * Math.cos(myData.jupiterg.lon)) +
+(forceSaturnEarth_p * Math.cos(myData.saturng.lon)) +
+(forceNeptuneEarth_p * Math.cos(myData.neptuneg.lon));
+
+let y_p = (forceMercuryEarth_p * Math.sin(myData.mercuryg.lon)) + 
+(forceVenusEarth_p * Math.sin(myData.venusg.lon)) +
+(forceMarsEarth_p * Math.sin(myData.marsg.lon)) +
+(forceJupiterEarth_p * Math.sin(myData.jupiterg.lon)) +
+(forceSaturnEarth_p * Math.sin(myData.saturng.lon)) +
+(forceNeptuneEarth_p * Math.sin(myData.neptuneg.lon));
+
+console.log(x_p.toExponential(), y_p.toExponential());
+
+let globalVectorLong_p = Math.atan(y_p/x_p) * 180 / Math.PI;
+let globalVectorForce_p = Math.sqrt(x_p^2 + y_p^2);
+
+console.log('global vector force_p:', globalVectorForce_p, 'Newtons');
+console.log('global vector longitude_p:', globalVectorLong_p, 'degrees');
