@@ -111,13 +111,10 @@ app.post("/", (req, res) => {
       jupiter_mass: 1898,
       saturn_mass: 568,
       uranus_mass: 86.8,
-      neptume_mass: 102,
+      neptune_mass: 102,
       moon_mass: 0.073,
       time: myDate,
     };
-
-
-
 
     console.log("data.helio:", data);
     
