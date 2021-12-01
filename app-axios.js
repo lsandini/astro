@@ -77,6 +77,7 @@ app.post("/", (req, res) => {
     let saturn_d = await saturn.getDistanceToEarth();
     let neptune_d = await neptune.getDistanceToEarth();
     let moon_d= await moon.getDistanceToEarth();
+    let moon_illuminated_fraction = await moon.getIlluminatedFraction();
   
 
     const data = {
@@ -102,7 +103,8 @@ app.post("/", (req, res) => {
       jupiterd: jupiter_d,
       saturnd: saturn_d,
       neptuned: neptune_d,
-      moon_d,
+      moon_d: moon_d,
+      moon_IF: moon_illuminated_fraction,
 
       mercury_mass: 0.330,
       venus_mass: 4.87,

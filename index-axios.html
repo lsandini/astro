@@ -74,6 +74,7 @@
                         document.getElementById("textArea5m").innerHTML = res.data.moong.lat;
                         document.getElementById("textArea6m").innerHTML = res.data.moong.radiusVector;
                         document.getElementById("textArea6md").innerHTML = res.data.moon_d;
+                        document.getElementById("textArea6mif").innerHTML = res.data.moon_IF;
                     })
                     .catch((err) => {
                         throw err;
@@ -112,6 +113,7 @@
     <p> latitude: <span id="textArea5m"></span>&deg;</p>
     <p> distance (astronomical units): <span id="textArea6m"></span></p>
     <p> distance in km: <span id="textArea6md"></span></p>
+    <p> Illuminated fraction: <span id="textArea6mif"></span></p>
 
 
     <h2>Prefer a link to the data in JSON format ?
