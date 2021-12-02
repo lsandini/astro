@@ -24,6 +24,8 @@ async function fetchText() {
     console.log(value); // 1
   });
   const arrayJSON = JSON.stringify(dataArray, null, 4);
+
+  
   await writeFile("./data-local.json", dataJSON);
   await writeFile("./data-array.json", arrayJSON);
   console.log(data);
