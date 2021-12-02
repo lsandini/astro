@@ -125,7 +125,15 @@ let globalVectorForce_p = Math.sqrt((x_p**2) + (y_p**2));
 console.log('global vector longitude_p:', globalVectorLong_p, 'degrees');
 console.log('global vector force_p:', globalVectorForce_p, 'Newtons');
 
-const forceVectors = JSON.stringify({tractionEarth: globalVectorForce, vectorDirection_E:globalVectorLong, tractionSubject:globalVectorForce_p, vector_direction_S:globalVectorLong_p});
+let moon_IF = myData.moon_IF;
+
+const forceVectors = JSON.stringify({
+    tractionEarth: globalVectorForce, 
+    vectorDirection_E:globalVectorLong, 
+    tractionSubject:globalVectorForce_p, 
+    vector_direction_S:globalVectorLong_p, 
+    moon_illumination_fraction: moon_IF});
+
 console.log(forceVectors);
 await writeFile("./forceVectors.json", forceVectors);
 
