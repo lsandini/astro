@@ -132,7 +132,7 @@ const forceVectors = JSON.stringify({
     vectorDirection_E:globalVectorLong, 
     tractionSubject:globalVectorForce_p, 
     vector_direction_S:globalVectorLong_p, 
-    moon_illumination_fraction: moon_IF});
+    moon_illumination_fraction: moon_IF}, null, 4);
 
 console.log(forceVectors);
 await writeFile("./forceVectors.json", forceVectors);
