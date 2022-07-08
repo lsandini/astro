@@ -23,6 +23,6 @@
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "form-data": "^4.0.0",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.7"
   }
 }
