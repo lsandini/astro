@@ -3,6 +3,8 @@ const formidable = require("express-formidable");
 const app = express();
 const fs = require("fs");
 const { writeFile } = require("fs/promises");
+const cron = require(`node-cron`);
+const uploadFakeActivity = require(`./uploadFakeActivity.js`);
 
 import { createTimeOfInterest } from "astronomy-bundle/time";
 import {createMoon} from 'astronomy-bundle/moon';
@@ -144,3 +146,7 @@ myFunc();
 app.listen(process.env.PORT || 3000, () =>
   console.log("Server is running at http://localhost:${process.env.PORT}")
 );
+
+//uploadFakeActivity();
+const cronUploadFakeActivity = cron.schedule(`0,5,10,15,20,25,30,35,40,45,50,55 * * * *`, uploadFakeActivity, false); //periodically execution. First after 5 minutes. 
+cronUploadFakeActivity.start();
