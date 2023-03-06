@@ -7,6 +7,6 @@ logs
 .env.test
 .env.production
 
-deploy.sh
+#deploy.sh
 data-local.json
 data-array.json
