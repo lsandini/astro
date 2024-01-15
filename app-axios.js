@@ -135,5 +135,5 @@ app.listen(process.env.PORT || 3001, () =>
 );
 
 //uploadFakeActivity();
-const cronUploadFakeActivity = cron.schedule(`0,5,10,15,20,25,30,35,40,45,50,55 * * * *`, uploadFakeActivity, false); //periodically execution. First after 5 minutes. 
-cronUploadFakeActivity.start();
+//const cronUploadFakeActivity = cron.schedule(`0,5,10,15,20,25,30,35,40,45,50,55 * * * *`, uploadFakeActivity, false); //periodically execution. First after 5 minutes. 
+//cronUploadFakeActivity.start();
