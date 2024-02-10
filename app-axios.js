@@ -1,10 +1,28 @@
 const express = require("express");
 const formidable = require("express-formidable");
 const app = express();
-const fs = require("fs");
-const { writeFile } = require("fs/promises");
-const cron = require(`node-cron`);
-const uploadFakeActivity = require(`./uploadFakeActivity.js`);
+
+require(`dotenv`).config();
+const fetch = require(`node-fetch`);
+const mongoose = require(`mongoose`);
+const {
+  userModel,
+  cgmSimModel,
+} = require(`./src/user/user.model`);
+const mongodbUri = process.env.MONGO_URI_IONOS;
+
+mongoose.set(`strictQuery`, false);
+mongoose.connect(mongodbUri, {}, (error) => {
+  if (error) {
+    console.error('mongoose.connect error: %o', error);
+  }
+});
+
+const db = mongoose.connection;
+db.on(`error`, console.error.bind(console, `connection error: `));
+db.once(`open`, function () {
+  console.log(`Connected successfully to mongoDB`);
+});
 
 import { createTimeOfInterest } from "astronomy-bundle/time";
 import {createMoon} from 'astronomy-bundle/moon';
@@ -130,10 +148,36 @@ app.get("/JSONData", async (req, res) => {
   }
 });
 
+app.get(`/refreshLastNSupdateDirect`, async (req, res) => {
+  const email = req.query.email; // Extract email from the request query parameters
+  try {
+
+
+    // Use Promise.all to run both queries concurrently
+    const [userResult, cgmResult] = await Promise.all([
+      userModel.findOne({ email }),
+      cgmSimModel.findOne({ email }),
+    ]);
+
+    if (userResult && cgmResult) {
+      // Combine the results into a single JSON object
+      const combinedResult = {
+        lastNSupdate: userResult.lastNSupdate,
+        onOffSwitch: cgmResult.onOffSwitch,
+      };
+
+      // Return the combined JSON object in the response
+      res.json(combinedResult);
+    } else {
+      res.status(404).json({ error: 'User or CGM data not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching data from MongoDB:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.listen(process.env.PORT || 3001, () =>
   console.log("Server is running at http://localhost:${process.env.PORT}")
 );
 
-//uploadFakeActivity();
-//const cronUploadFakeActivity = cron.schedule(`0,5,10,15,20,25,30,35,40,45,50,55 * * * *`, uploadFakeActivity, false); //periodically execution. First after 5 minutes. 
-//cronUploadFakeActivity.start();
