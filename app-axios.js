@@ -1,9 +1,8 @@
+require(`dotenv`).config();
 const express = require("express");
 const formidable = require("express-formidable");
 const app = express();
 
-require(`dotenv`).config();
-const fetch = require(`node-fetch`);
 const mongoose = require(`mongoose`);
 const {
   userModel,
@@ -152,7 +151,6 @@ app.get(`/refreshLastNSupdateDirect`, async (req, res) => {
   const email = req.query.email; // Extract email from the request query parameters
   try {
 
-
     // Use Promise.all to run both queries concurrently
     const [userResult, cgmResult] = await Promise.all([
       userModel.findOne({ email }),
@@ -178,6 +176,6 @@ app.get(`/refreshLastNSupdateDirect`, async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3001, () =>
-  console.log("Server is running at http://localhost:${process.env.PORT}")
+  console.log(`Server is running at http://localhost:${process.env.PORT}`)
 );
 

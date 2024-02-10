@@ -11,4 +11,4 @@ logs
 data-local.json
 data-array.json
 
-/node_modules/*
+node_modules/
