@@ -21,7 +21,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci --omit=dev
 
 # Switch to the non-root user.
-USER nodeuser
+# USER nodeuser
 
 # Copy the rest of the source files into the image.
 COPY . .
