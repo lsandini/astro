@@ -1,4 +1,17 @@
 require(`dotenv`).config();
+
+import { createTimeOfInterest } from "astronomy-bundle/time";
+import { createMoon } from 'astronomy-bundle/moon';
+import { createEarth } from "astronomy-bundle/earth";
+import {
+  createMercury,
+  createVenus,
+  createMars,
+  createJupiter,
+  createSaturn,
+  createNeptune,
+} from "astronomy-bundle/planets";
+
 const express = require("express");
 const formidable = require("express-formidable");
 const app = express();
@@ -13,29 +26,19 @@ const mongodbUri = process.env.MONGO_URI_IONOS;
 mongoose.set(`strictQuery`, false);
 mongoose.connect(mongodbUri, {}, (error) => {
   if (error) {
-    console.error('mongoose.connect error: %o', error);
+    console.error('Failed to connect to MongoDB:', error);
+  } else {
+    console.log('Connected successfully to MongoDB');
   }
 });
 
 const db = mongoose.connection;
-db.on(`error`, console.error.bind(console, `connection error: `));
-db.once(`open`, function () {
-  console.log(`Connected successfully to mongoDB`);
+db.on('error', console.error.bind(console, 'connection error: '));
+
+db.once('open', function () {
+  console.log('MongoDB connection is open');
 });
 
-import { createTimeOfInterest } from "astronomy-bundle/time";
-import {createMoon} from 'astronomy-bundle/moon';
-import { createEarth } from "astronomy-bundle/earth";
-import {
-  createMercury,
-  createVenus,
-  createMars,
-  createJupiter,
-  createSaturn,
-  createNeptune,
-} from "astronomy-bundle/planets";
-
-app.use(express.static(__dirname + "/index-axios.html"));
 app.use(formidable());
 
 app.get("/", (req, res) => {
@@ -47,10 +50,9 @@ app.get("/JSON", (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-  const myDate = new Date(req.fields.date);
-
   try {
-    const data = await planets_now(myDate);
+    const myDate = new Date(req.fields.date);
+    const data = await planets_nowAsync(myDate);
     res.json(data);
   } catch (error) {
     console.log("Failed to get planetary data:", error);
@@ -58,7 +60,7 @@ app.post("/", async (req, res) => {
   }
 });
 
-async function planets_now(myDate) {
+async function planets_nowAsync(myDate) {
   const toi = createTimeOfInterest.fromDate(myDate);
   let mercury = createMercury(toi);
   let venus = createVenus(toi);
@@ -131,15 +133,14 @@ async function planets_now(myDate) {
     moon_mass: 0.073,
     time: myDate,
   };
-
   console.log("data.helio:", data);
   return data;
-}
+};
 
 app.get("/JSONData", async (req, res) => {
   try {
-    const myDate = new Date(); // You can replace this with your preferred date logic
-    const data = await planets_now(myDate);
+    const myDate = new Date();
+    const data = await planets_nowAsync(myDate);
     res.json(data);
   } catch (error) {
     console.log("Failed to get planetary data:", error);
