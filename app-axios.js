@@ -176,7 +176,7 @@ app.get(`/refreshLastNSupdateDirect`, async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3001, () =>
+app.listen(3001, () =>
   console.log(`Server is running at http://localhost:${process.env.PORT}`)
 );
 
