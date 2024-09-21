@@ -4,9 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LibreMonitor</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            height: 100vh;
+        }
+        .left-column {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .right-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        .grid-item {
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 2px;
+            font-size: 18px;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+        }
+        .overlay-text {
+            position: absolute;
+            top: 10px;
+            left: 50%; /* Move the text to the center horizontally */
+            transform: translateX(-50%); /* Offset by half its width to truly center it */
+            background-color: rgba(0, 0, 0, 0.2); /* Optional background for readability */
+            color: rgb(0, 182, 0); /* Change the text color to green */
+            padding: 5px;
+            z-index: 10;
+            font-size: 36px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to LibreMonitor</h1>
-    <p>This is a simple monitoring page for the Libre application.</p>
+    <div class="container">
+        <div class="left-column">
+            <h2>Menu</h2>
+            <!-- Add menu items here -->
+        </div>
+        <div class="right-section">
+            <div class="grid-item">
+                <div class="overlay-text">Patient 1</div>
+                <iframe src="https://ns-11.oracle.cgmsim.com" class="iframe-container" frameborder="0"></iframe>
+            </div>
+            <div class="grid-item">
+                <div class="overlay-text">Patient 2</div>
+                <iframe src="https://ns-12.oracle.cgmsim.com" class="iframe-container" frameborder="0"></iframe>
+            </div>
+            <div class="grid-item">
+                <div class="overlay-text">Patient 3</div>
+                <iframe src="https://ns-13.oracle.cgmsim.com" class="iframe-container" frameborder="0"></iframe>
+            </div>
+            <div class="grid-item">
+                <div class="overlay-text">Patient 4</div>
+                <iframe src="https://ns-14.oracle.cgmsim.com" class="iframe-container" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
