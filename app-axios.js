@@ -54,6 +54,10 @@ app.get("/JSON", (req, res) => {
   res.sendFile(__dirname + "/data.json");
 });
 
+app.get('/libre-monitor', (req, res) => {
+    res.sendFile(__dirname + '/libre-monitor.html');
+});
+
 app.post("/", (req, res) => {
   const myDate = new Date(req.fields.date);
   async function planets_now() {
