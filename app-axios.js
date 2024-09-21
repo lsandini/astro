@@ -5,14 +5,10 @@ const fs = require("fs");
 const { writeFile } = require("fs/promises");
 const cron = require(`node-cron`);
 const uploadFakeActivity = require(`./uploadFakeActivity.js`);
-
 require(`dotenv`).config();
 const fetch = require(`node-fetch`);
 const mongoose = require(`mongoose`);
-const {
-  userModel,
-  cgmSimModel,
-} = require(`./src/user/user.model`);
+const { userModel, cgmSimModel } = require(`./src/user/user.model`);
 
 const mongodbUri = process.env.MONGO_URI_IONOS;
 
@@ -29,22 +25,11 @@ db.once(`open`, function () {
   console.log(`Connected successfully to mongoDB`);
 });
 
+// Serve static files from the current directory
+app.use(express.static(__dirname));
 
-import { createTimeOfInterest } from "astronomy-bundle/time";
-import {createMoon} from 'astronomy-bundle/moon';
-import { createEarth } from "astronomy-bundle/earth";
-import {
-  createMercury,
-  createVenus,
-  createMars,
-  createJupiter,
-  createSaturn,
-  createNeptune,
-} from "astronomy-bundle/planets";
-
-app.use(express.static(__dirname + "/index-axios.html"));
+// Use formidable for form parsing
 app.use(formidable());
-
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index-axios.html");
